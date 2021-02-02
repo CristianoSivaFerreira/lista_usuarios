@@ -34,19 +34,20 @@ class Users with ChangeNotifier {
         _items.containsKey(user.id)) {
       _items.update(user.id, (_) => user);
     } else {
-      //! adicionar
       final id = Random().nextDouble().toString();
-      _items.putIfAbsent(
-        id,
-        () => User(
-          name: user.name,
-          email: user.email,
-          avatarUrl: user.avatarUrl,
-        ),
-      );
+        _items.putIfAbsent(
+          id,
+          () => User(
+            name: user.name,
+            email: user.email,
+            avatarUrl: user.avatarUrl,
+          ),
+        );
+      }
+
+      notifyListeners();
+      
     }
-    
-    notifyListeners();
 
     //! ou alterar
     void remove(User user) {
@@ -57,4 +58,4 @@ class Users with ChangeNotifier {
     }
 
   }
-}
+
